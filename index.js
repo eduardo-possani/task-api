@@ -1,14 +1,20 @@
 const express = require('express');
-const db = require('./infrastructure/db.js');
-const taskRouter = require('./routes/taskRouts.js');
+const db = require('./infrastructure/db');
+const bodyParser = require('body-parser')
+const taskRoute = require('./routes/taskRoutes');
+const cors = require('cors');
 const app = express();
-const port = 3000;
+
+
+const port = 8000;
+app.use(cors({origin:"*"}));
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 // Rota padrão
 
 db.sync()
 
-app.use('/tasks',taskRouter)
+app.use('/tasks', taskRoute)
 
 // Iniciar o servidor
 app.listen(port, () => {

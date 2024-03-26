@@ -9,6 +9,7 @@ module.exports = db.define('task', {
     status: {
         type: DataTypes.ENUM,
         values: ['COMPLETED','ACTIVE'],
-        allowNull:false
+        allowNull:false,
+        defaultValue: 'ACTIVE'
     }
 });
